@@ -1,0 +1,21 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.appRouter = void 0;
+const express_1 = __importDefault(require("express"));
+const bookControllers_1 = require("./controllers/bookControllers");
+const memberControllers_1 = require("./controllers/memberControllers");
+const rentControllers_1 = require("./controllers/rentControllers");
+const app = (0, express_1.default)();
+exports.appRouter = app;
+app.get("/book", bookControllers_1.getAllBook);
+app.patch("/book/:bookId", bookControllers_1.updateBookStock);
+app.post("/book", bookControllers_1.createBook);
+app.get("/member", memberControllers_1.getAllMembers);
+app.get("/member/:memberId", memberControllers_1.getMember);
+app.post("/member", memberControllers_1.createMember);
+app.patch("/forgiveMember/:memberId", memberControllers_1.forgiveMember);
+app.post("/borrowBook/:memberId", rentControllers_1.borrowBook);
+app.post("/returnBook/:memberId", rentControllers_1.returnBook);
